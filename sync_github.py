@@ -1,17 +1,48 @@
 import os
 import subprocess
 from pathlib import Path
+import time
+import sys
+from itertools import cycle
 
-def run_git_command(command, check=True):
+class Spinner:
+    def __init__(self):
+        self.spinner = cycle(['⠋','⠙','⠹','⠸','⠼','⠴','⠦','⠧','⠇','⠏'])
+    
+    def spin(self, text):
+        sys.stdout.write(f'\r{next(self.spinner)} {text}')
+        sys.stdout.flush()
+
+def run_git_command(command, check=True, show_spinner=True):
+    spinner = Spinner()
     try:
-        print(f"Executing: git {' '.join(command[1:])}")
-        result = subprocess.run(command, check=check, capture_output=True, text=True)
+        print(f"\nExecuting: git {' '.join(command[1:])}")
+        if show_spinner:
+            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            while process.poll() is None:
+                spinner.spin("Working...")
+                time.sleep(0.1)
+            stdout, stderr = process.communicate()
+            result = subprocess.CompletedProcess(command, process.returncode, stdout, stderr)
+        else:
+            result = subprocess.run(command, check=check, capture_output=True, text=True)
+        
         if result.returncode == 0:
             return result
-        print(f"Warning: {result.stderr}")
+        
+        # Auto-retry on push failures
+        if 'push' in command and result.returncode != 0:
+            print("\nPush failed, retrying...")
+            time.sleep(2)
+            return run_git_command(command, check, show_spinner)
+            
+        print(f"\nWarning: {result.stderr}")
         return result
     except subprocess.CalledProcessError as e:
-        print(f"Error: {e.stderr}")
+        print(f"\nError: {e.stderr}")
+        return None
+    except KeyboardInterrupt:
+        print("\nOperation cancelled by user")
         return None
 
 def setup_git():
@@ -23,6 +54,10 @@ def setup_git():
 
 def sync_with_github(repo_url):
     print(f"\nSynchronizing with {repo_url}")
+    
+    # Setup credential caching
+    run_git_command(['git', 'config', '--global', 'credential.helper', 'store'])
+    
     # Check if remote exists
     remote_exists = run_git_command(['git', 'remote', 'get-url', 'origin'], check=False)
     
