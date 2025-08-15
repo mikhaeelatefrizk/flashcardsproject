@@ -48,9 +48,9 @@ def run_git_command(command, check=True, show_spinner=True):
 def setup_git():
     # Initialize git if not already initialized
     if not Path('.git').exists():
-        subprocess.run(['git', 'init'])
-        subprocess.run(['git', 'add', '.'])
-        subprocess.run(['git', 'commit', '-m', 'Initial commit'])
+        subprocess.run(['git', 'init'], check=True)
+        subprocess.run(['git', 'add', '.'], check=True)
+        subprocess.run(['git', 'commit', '-m', 'Initial commit'], check=True)
 
 def sync_with_github(repo_url):
     print(f"\nSynchronizing with {repo_url}")
