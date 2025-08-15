@@ -4,9 +4,14 @@ from pathlib import Path
 
 def run_git_command(command, check=True):
     try:
-        return subprocess.run(command, check=check, capture_output=True, text=True)
+        print(f"Executing: git {' '.join(command[1:])}")
+        result = subprocess.run(command, check=check, capture_output=True, text=True)
+        if result.returncode == 0:
+            return result
+        print(f"Warning: {result.stderr}")
+        return result
     except subprocess.CalledProcessError as e:
-        print(f"Git command failed: {e.stderr}")
+        print(f"Error: {e.stderr}")
         return None
 
 def setup_git():
@@ -17,6 +22,7 @@ def setup_git():
         subprocess.run(['git', 'commit', '-m', 'Initial commit'])
 
 def sync_with_github(repo_url):
+    print(f"\nSynchronizing with {repo_url}")
     # Check if remote exists
     remote_exists = run_git_command(['git', 'remote', 'get-url', 'origin'], check=False)
     
@@ -33,7 +39,12 @@ def sync_with_github(repo_url):
     # Push to GitHub
     run_git_command(['git', 'add', '.'])
     run_git_command(['git', 'commit', '-m', 'Update flashcards project'])
-    run_git_command(['git', 'push', '-u', 'origin', 'main', '--force'])
+    result = run_git_command(['git', 'push', '-u', 'origin', 'main', '--force'])
+    
+    if result and result.returncode == 0:
+        print("\nSuccessfully synchronized with GitHub!")
+    else:
+        print("\nSync completed with some warnings. Please check the messages above.")
 
 if __name__ == '__main__':
     repo_url = input("Enter your GitHub repository URL: ")
