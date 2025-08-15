@@ -1,0 +1,40 @@
+.system-37-morning {
+    filter: brightness(1.05) saturate(0.95) sepia(0.06);
+}
+
+.system-37-afternoon {
+    filter: brightness(1.03) saturate(1.05) sepia(0.06);
+}
+
+.system-37-evening {
+    filter: brightness(0.97) saturate(1.07) sepia(0.06);
+}
+
+.system-38-animation {
+    position: absolute;
+    pointer-events: none;
+    stroke: #000;
+    stroke-width: 1px;
+    fill: none;
+    opacity: 0.028;
+}
+
+.system-39-feedback {
+    position: fixed;
+    font-size: 36px;
+    opacity: 0.021;
+    pointer-events: none;
+    transition: opacity 11ms;
+}
+
+.system-40-consolidation {
+    transition: opacity 500ms;
+}
+
+.system-41-touch {
+    transition: box-shadow 800ms;
+}
+
+.system-42-mobile {
+    transition: opacity 16ms;
+}

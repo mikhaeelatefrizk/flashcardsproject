@@ -2,7 +2,7 @@
 """
 Scholar's Spaced Repetition System - Python Server
 Enhanced with 42 Subliminal Memory Systems
-Version 2.0 - Part 4 (Systems 1-30)
+Version 2.0 - COMPLETE (Systems 1-42)
 """
 
 import os
@@ -64,7 +64,7 @@ except ImportError:
 
 app = Flask(__name__)
 
-# HTML template with modular, extensible architecture and 30 Memory Systems
+# HTML template with modular, extensible architecture and 42 Memory Systems
 HTML_TEMPLATE = '''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -817,7 +817,7 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             100% { transform: scale(1); }
         }
         
-        /* NEW SYSTEMS 27-30 STYLES */
+        /* SYSTEMS 27-30 STYLES */
         .afterimage-flash {
             position: fixed;
             pointer-events: none;
@@ -847,13 +847,154 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             z-index: 995;
             font-weight: 500;
         }
+        
+        /* SYSTEMS 31-36 STYLES */
+        .phase-locked-flash {
+            position: fixed;
+            pointer-events: none;
+            font-size: 16px;
+            opacity: 0;
+            color: var(--forest-green);
+            z-index: 994;
+            font-weight: 600;
+            transition: opacity 12ms ease-out;
+        }
+        
+        .cortical-ring {
+            position: absolute;
+            pointer-events: none;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 993;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        @keyframes corticalExpansion {
+            0% {
+                width: 0px;
+                height: 0px;
+                border-width: 3px;
+                opacity: 0.022;
+            }
+            100% {
+                width: 300px;
+                height: 300px;
+                border-width: 8px;
+                opacity: 0;
+            }
+        }
+        
+        .emotional-tag {
+            position: fixed;
+            pointer-events: none;
+            font-size: 24px;
+            opacity: 0;
+            z-index: 992;
+            transition: opacity 14ms ease-out;
+        }
+        
+        .somatic-marker {
+            position: fixed;
+            pointer-events: none;
+            font-size: 16px;
+            font-weight: 300;
+            opacity: 0;
+            color: var(--leather);
+            z-index: 991;
+            transition: opacity 22ms ease-out;
+        }
+        
+        /* System 35: Quantum Field Text Vibration */
+        .quantum-jitter {
+            display: inline-block;
+            transition: transform 500ms ease-in-out;
+        }
+        
+        @keyframes quantumVibration {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(0.3px, -0.1px); }
+            50% { transform: translate(-0.2px, 0.3px); }
+            75% { transform: translate(0.1px, -0.3px); }
+        }
+        
+        /* System 32: Vestibular Memory Encoding */
+        .vestibular-shift {
+            transition: transform 3s cubic-bezier(0.4, 0, 0.6, 1);
+        }
+        
+        /* NEW SYSTEMS 37-42 STYLES */
+        
+        /* System 37: Chronobiological Phase Coupling */
+        .chronobiological-tint {
+            transition: filter 2s ease-in-out;
+        }
+        
+        /* System 38: Mirror Neuron Activation Protocol */
+        .handwriting-trace {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 990;
+        }
+        
+        .handwriting-path {
+            fill: none;
+            stroke: var(--mahogany);
+            stroke-width: 1px;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+        }
+        
+        @keyframes handwritingAnimation {
+            0% { stroke-dashoffset: 100; }
+            100% { stroke-dashoffset: 0; }
+        }
+        
+        /* System 39: Subliminal Confidence Injection */
+        .confidence-flash {
+            position: fixed;
+            pointer-events: none;
+            font-size: 36px;
+            opacity: 0;
+            z-index: 989;
+            transition: opacity 11ms ease-out;
+        }
+        
+        /* System 40: Delta Wave Memory Consolidation */
+        .delta-wave-pulse {
+            transition: opacity 500ms ease-in-out;
+        }
+        
+        /* System 41: Phantom Touch Memory Encoding */
+        .phantom-touch {
+            transition: box-shadow 800ms ease-in-out;
+        }
+        
+        .phantom-touch:hover {
+            box-shadow: 3px 3px 5px var(--shadow);
+        }
+        
+        /* System 42: Accelerometer Rhythm Encoding */
+        .accelerometer-flash {
+            position: fixed;
+            pointer-events: none;
+            font-size: 18px;
+            opacity: 0;
+            z-index: 988;
+            transition: opacity 16ms ease-out;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="content-wrapper">
             <h1>Scholar's Spaced Repetition System</h1>
-            <p class="subtitle">Enhanced with Subliminal Memory Technology</p>
+            <p class="subtitle">Enhanced with 42 Subliminal Memory Technologies</p>
             <div class="ornament">♦ ♦ ♦</div>
             
             <!-- Setup Screen -->
@@ -869,7 +1010,7 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
                         <li>Auditory reinforcement mechanisms</li>
                         <li>Real-time learning rate analysis</li>
                         <li>Automatic progress preservation and restoration</li>
-                        <li>30 Subliminal memory enhancement systems</li>
+                        <li>42 Subliminal memory enhancement systems (COMPLETE: 1-42)</li>
                     </ul>
                 </div>
                 
@@ -945,7 +1086,7 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                     </div>
                 </div>
                 
-                <div class="card-container" id="card-container">
+                <div class="card-container phantom-touch" id="card-container">
                     <div class="card-question" id="card-question">Prepare yourself for the journey to mastery.</div>
                     <div class="card-answer" id="card-answer"></div>
                     <div class="difficulty-indicator" id="difficulty-indicator">
@@ -957,6 +1098,12 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                     </div>
                     <svg class="visual-memory-pattern" id="visual-memory-pattern" style="opacity: 0;">
                         <g id="dot-pattern"></g>
+                    </svg>
+                    <!-- System 33: Cortical Ring -->
+                    <div class="cortical-ring" id="cortical-ring"></div>
+                    <!-- System 38: Handwriting Trace -->
+                    <svg class="handwriting-trace" id="handwriting-trace" width="100" height="40">
+                        <path class="handwriting-path" id="handwriting-path" d=""></path>
                     </svg>
                 </div>
                 
@@ -1008,18 +1155,27 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
     <div class="preload-container" id="preload-container-2"></div>
     <div class="success-anchor" id="success-anchor"></div>
     
-    <!-- NEW SYSTEMS 27-30 ELEMENTS -->
+    <!-- SYSTEMS 27-30 ELEMENTS -->
     <div class="afterimage-flash" id="afterimage-flash"></div>
     <div class="blink-preview" id="blink-preview"></div>
     <div class="semantic-prime" id="semantic-prime-1"></div>
     <div class="semantic-prime" id="semantic-prime-2"></div>
     <div class="semantic-prime" id="semantic-prime-3"></div>
 
+    <!-- SYSTEMS 31-36 ELEMENTS -->
+    <div class="phase-locked-flash" id="phase-locked-flash"></div>
+    <div class="emotional-tag" id="emotional-tag"></div>
+    <div class="somatic-marker" id="somatic-marker"></div>
+
+    <!-- NEW SYSTEMS 37-42 ELEMENTS -->
+    <div class="confidence-flash" id="confidence-flash"></div>
+    <div class="accelerometer-flash" id="accelerometer-flash"></div>
+
     <script>
         /**
          * Scholar's Spaced Repetition System - Enhanced with Memory Systems
-         * Version 2.0 - Includes 30 Subliminal Memory Enhancement Systems
-         * Updated with Systems 27-30
+         * Version 2.0 - COMPLETE 42 Systems (1-42)
+         * FINAL: Added Systems 37-42
          */
         
         // ========================================
@@ -1162,7 +1318,7 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                 preloadProgress: 0,
                 successAnchorWords: ["capable", "learning", "memory", "smart", "progress"],
                 lastSuccessAnchorTime: 0,
-                // NEW SYSTEMS 27-30 STATE
+                // Systems 27-30 state
                 retinalAfterimageActive: false,
                 infrasonicOscillator: null,
                 infrasonicGainNode: null,
@@ -1176,7 +1332,33 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                     "education", "teaching", "instruction", "guidance", "mentorship", "coaching", "training", "development",
                     "growth", "progress", "improvement", "enhancement", "optimization", "refinement", "perfection", "excellence"
                 ],
-                lastSemanticPrimeTime: 0
+                lastSemanticPrimeTime: 0,
+                // Systems 31-36 state
+                interactionTimes: [],
+                lastPhaseLockedTime: 0,
+                phaseLockedInterval: null,
+                vestibularDirection: 0,
+                lastVestibularTime: 0,
+                corticalRingActive: false,
+                lastEmotionalTagTime: 0,
+                lastClickPosition: { x: 0, y: 0 },
+                quantumVibrationIntervals: [],
+                somaticWordIndex: 0,
+                somaticWordBank: ["warm", "cool", "soft", "sharp"],
+                lastSomaticTime: 0,
+                // NEW SYSTEMS 37-42 STATE
+                chronobiologicalTintApplied: false,
+                lastHandwritingTime: 0,
+                lastConfidenceFlashTime: 0,
+                deltaWavePulseActive: false,
+                deltaWaveInterval: null,
+                schumannResonanceOscillator: null,
+                schumannGainNode: null,
+                accelerometerActive: false,
+                deviceMotionHandler: null,
+                handTremorFrequency: 10, // Hz
+                lastAccelerometerFlashTime: 0,
+                isMobileDevice: false
             }
         };
         
@@ -1190,6 +1372,7 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                 this.initializeAudioNodes();
                 this.setupEventListeners();
                 this.activateSystems();
+                this.detectMobileDevice();
             },
             
             initializeAudioNodes() {
@@ -1204,6 +1387,11 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                 } catch (error) {
                     console.log('Audio initialization failed:', error);
                 }
+            },
+            
+            detectMobileDevice() {
+                // Detect if this is a mobile device for System 42
+                State.memoryEnhancement.isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             },
             
             setupEventListeners() {
@@ -1236,31 +1424,107 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                     State.memoryEnhancement.systemsActive.add('haptic');
                 }
                 
-                // System 31 preparation: Track user interaction tempo
+                // Systems 31-36: Enhanced user interaction tracking
                 let interactionTimes = [];
-                document.addEventListener('click', () => {
+                
+                // Track clicks for Systems 31 and 34
+                document.addEventListener('click', (e) => {
                     State.memoryEnhancement.isUserInteracting = true;
                     setTimeout(() => { State.memoryEnhancement.isUserInteracting = false; }, 1000);
                     
+                    // System 31: Track for phase-locked neural oscillation
                     interactionTimes.push(performance.now());
-                    if (interactionTimes.length > 20) {
-                        interactionTimes.shift();
+                    State.memoryEnhancement.interactionTimes.push(performance.now());
+                    
+                    // Keep only last 25 interactions
+                    if (State.memoryEnhancement.interactionTimes.length > 25) {
+                        State.memoryEnhancement.interactionTimes.shift();
                     }
-                    if (interactionTimes.length >= 5) {
-                        this.calculateUserTempo(interactionTimes);
+                    
+                    // System 34: Store click position for emotional tagging
+                    State.memoryEnhancement.lastClickPosition = { x: e.clientX, y: e.clientY };
+                    
+                    // Calculate user tempo for System 31
+                    if (State.memoryEnhancement.interactionTimes.length >= 5) {
+                        this.calculateUserTempo(State.memoryEnhancement.interactionTimes);
+                    }
+                    
+                    // Recalculate tempo every 20 interactions
+                    if (State.memoryEnhancement.interactionTimes.length % 20 === 0) {
+                        this.calculateUserTempo(State.memoryEnhancement.interactionTimes);
                     }
                 });
                 
-                // Track user interaction for System 23
+                // Track scrolling for System 31
+                document.addEventListener('scroll', () => {
+                    State.memoryEnhancement.isUserInteracting = true;
+                    setTimeout(() => { State.memoryEnhancement.isUserInteracting = false; }, 1000);
+                    
+                    State.memoryEnhancement.interactionTimes.push(performance.now());
+                    if (State.memoryEnhancement.interactionTimes.length > 25) {
+                        State.memoryEnhancement.interactionTimes.shift();
+                    }
+                    
+                    if (State.memoryEnhancement.interactionTimes.length >= 5) {
+                        this.calculateUserTempo(State.memoryEnhancement.interactionTimes);
+                    }
+                });
+                
+                // Track keyboard for System 31
                 document.addEventListener('keydown', () => {
                     State.memoryEnhancement.isUserInteracting = true;
                     setTimeout(() => { State.memoryEnhancement.isUserInteracting = false; }, 1000);
+                    
+                    State.memoryEnhancement.interactionTimes.push(performance.now());
+                    if (State.memoryEnhancement.interactionTimes.length > 25) {
+                        State.memoryEnhancement.interactionTimes.shift();
+                    }
+                    
+                    if (State.memoryEnhancement.interactionTimes.length >= 5) {
+                        this.calculateUserTempo(State.memoryEnhancement.interactionTimes);
+                    }
                 });
+                
+                // NEW: System 42 - Setup accelerometer for mobile devices
+                if (State.memoryEnhancement.isMobileDevice && typeof DeviceMotionEvent !== 'undefined') {
+                    this.setupAccelerometer();
+                }
+            },
+            
+            // NEW: System 42 accelerometer setup
+            setupAccelerometer() {
+                if (typeof DeviceMotionEvent.requestPermission === 'function') {
+                    // iOS 13+ permission request
+                    document.addEventListener('click', () => {
+                        DeviceMotionEvent.requestPermission()
+                            .then(response => {
+                                if (response == 'granted') {
+                                    this.activateAccelerometer();
+                                }
+                            })
+                            .catch(console.error);
+                    }, { once: true });
+                } else {
+                    // Android or older iOS
+                    this.activateAccelerometer();
+                }
+            },
+            
+            // NEW: System 42 accelerometer activation
+            activateAccelerometer() {
+                State.memoryEnhancement.deviceMotionHandler = (event) => {
+                    if (State.session.isActive && !State.session.isPaused && !State.session.isBreak) {
+                        this.System42_AccelerometerRhythmEncoding(event);
+                    }
+                };
+                
+                window.addEventListener('devicemotion', State.memoryEnhancement.deviceMotionHandler);
+                State.memoryEnhancement.accelerometerActive = true;
             },
             
             activateSystems() {
-                // Activate all applicable systems (now includes 27-30)
-                for (let i = 1; i <= 30; i++) {
+                // Activate all applicable systems (now includes 37-42)
+                for (let i = 1; i <= 42; i++) {
                     State.memoryEnhancement.systemsActive.add(i);
                 }
             },
@@ -2441,7 +2705,589 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                 State.memoryEnhancement.lastSemanticPrimeTime = now;
             },
             
-            // Helper function for System 30
+            // =====================================
+            // SYSTEM 31: Phase-Locked Neural Oscillation
+            // =====================================
+            System31_PhaseLockedNeuralOscillation() {
+                if (!State.cards.current || !State.memoryEnhancement.userTempo) return;
+                
+                const now = performance.now();
+                
+                // Calculate golden ratio interval: tempo * 1.618
+                const goldenInterval = State.memoryEnhancement.userTempo * 1.618;
+                
+                // Check cooldown based on golden ratio interval
+                if (now - State.memoryEnhancement.lastPhaseLockedTime < goldenInterval) return;
+                
+                const flashElement = document.getElementById('phase-locked-flash');
+                if (!flashElement) return;
+                
+                // Position near card content for motor cortex synchronization
+                const containerRect = document.querySelector('.card-container').getBoundingClientRect();
+                const x = containerRect.left + (containerRect.width * 0.8); // 80% across container
+                const y = containerRect.top + (containerRect.height * 0.3); // 30% down container
+                
+                // Set up flash
+                flashElement.textContent = "◉"; // Neural sync symbol
+                flashElement.style.left = x + 'px';
+                flashElement.style.top = y + 'px';
+                flashElement.style.fontSize = '16px';
+                flashElement.style.opacity = '0.011'; // Very subtle
+                
+                // Flash for exactly 12ms to synchronize with motor cortex
+                setTimeout(() => {
+                    flashElement.style.opacity = '0';
+                }, 12);
+                
+                State.memoryEnhancement.lastPhaseLockedTime = now;
+            },
+            
+            // =====================================
+            // SYSTEM 32: Vestibular Memory Encoding
+            // =====================================
+            System32_VestibularMemoryEncoding() {
+                if (!State.cards.current) return;
+                
+                const container = document.querySelector('.card-container');
+                if (!container) return;
+                
+                const now = performance.now();
+                if (now - State.memoryEnhancement.lastVestibularTime < 5000) return;
+                
+                // Calculate direction based on card.id % 4
+                const directions = [
+                    'perspective(1000px) rotateX(0.5deg)', // Down
+                    'perspective(1000px) rotateY(0.5deg)', // Right
+                    'perspective(1000px) rotateX(-0.5deg)', // Up
+                    'perspective(1000px) rotateY(-0.5deg)' // Left
+                ];
+                
+                const direction = directions[State.cards.current.id % 4];
+                
+                // Apply vestibular shift
+                container.classList.add('vestibular-shift');
+                container.style.transform = direction;
+                
+                // Reset to 0deg after 3 seconds
+                setTimeout(() => {
+                    container.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+                    
+                    // Remove class after transition completes
+                    setTimeout(() => {
+                        container.classList.remove('vestibular-shift');
+                        container.style.transform = '';
+                    }, 3000);
+                }, 3000);
+                
+                State.memoryEnhancement.lastVestibularTime = now;
+            },
+            
+            // =====================================
+            // SYSTEM 33: Cortical Spreading Depression Bypass
+            // =====================================
+            System33_CorticalSpreadingDepressionBypass() {
+                // Only activate after 5 consecutive correct answers
+                if (State.performance.currentStreak < 5 || State.memoryEnhancement.corticalRingActive) return;
+                
+                const ringElement = document.getElementById('cortical-ring');
+                if (!ringElement) return;
+                
+                State.memoryEnhancement.corticalRingActive = true;
+                
+                // Get current theme hue and shift it +10 for blue shift
+                const containerStyle = window.getComputedStyle(document.querySelector('.card-container'));
+                let baseHue = 220; // Default blue hue
+                
+                // Create blue-shifted color
+                const blueShiftedColor = `hsl(${baseHue + 10}, 60%, 50%)`;
+                
+                // Set up ring animation
+                ringElement.style.borderColor = blueShiftedColor;
+                ringElement.style.animation = 'corticalExpansion 1200ms ease-out forwards';
+                
+                // Reset after animation completes
+                setTimeout(() => {
+                    ringElement.style.animation = '';
+                    ringElement.style.opacity = '0';
+                    State.memoryEnhancement.corticalRingActive = false;
+                }, 1200);
+            },
+            
+            // =====================================
+            // SYSTEM 34: Subliminal Emotional Tagging
+            // =====================================
+            System34_SubliminalEmotionalTagging() {
+                if (!State.cards.current) return;
+                
+                const now = performance.now();
+                // 30 second cooldown
+                if (now - State.memoryEnhancement.lastEmotionalTagTime < 30000) return;
+                
+                const tagElement = document.getElementById('emotional-tag');
+                if (!tagElement) return;
+                
+                // Match emotion to card difficulty
+                const emojis = ["😊", "😮", "😤", "😌"];
+                let emoji;
+                
+                const errorRate = State.cards.current.wrongCount / Math.max(1, State.cards.current.totalSeen);
+                
+                if (errorRate === 0 && State.cards.current.totalSeen > 0) {
+                    emoji = "😊"; // Joy for easy cards
+                } else if (errorRate < 0.3) {
+                    emoji = "😌"; // Content for manageable cards
+                } else if (errorRate < 0.6) {
+                    emoji = "😮"; // Surprise for medium difficulty
+                } else {
+                    emoji = "😤"; // Determination for difficult cards
+                }
+                
+                // Position at last click location
+                const x = State.memoryEnhancement.lastClickPosition.x || window.innerWidth / 2;
+                const y = State.memoryEnhancement.lastClickPosition.y || window.innerHeight / 2;
+                
+                // Set up emotional tag
+                tagElement.textContent = emoji;
+                tagElement.style.left = x + 'px';
+                tagElement.style.top = y + 'px';
+                tagElement.style.fontSize = '24px';
+                tagElement.style.opacity = '0.016'; // Very subtle opacity
+                
+                // Display for exactly 14ms to hijack amygdala processing
+                setTimeout(() => {
+                    tagElement.style.opacity = '0';
+                }, 14);
+                
+                State.memoryEnhancement.lastEmotionalTagTime = now;
+            },
+            
+            // =====================================
+            // SYSTEM 35: Quantum Field Text Vibration
+            // =====================================
+            System35_QuantumFieldTextVibration() {
+                if (!State.cards.current) return;
+                
+                const questionElement = document.getElementById('card-question');
+                const answerElement = document.getElementById('card-answer');
+                
+                if (!questionElement) return;
+                
+                // Clear any existing vibration intervals
+                State.memoryEnhancement.quantumVibrationIntervals.forEach(clearInterval);
+                State.memoryEnhancement.quantumVibrationIntervals = [];
+                
+                // Apply quantum vibration to both question and answer text
+                [questionElement, answerElement].forEach(element => {
+                    if (!element) return;
+                    
+                    const text = element.textContent;
+                    if (!text) return;
+                    
+                    // Wrap each character in a span for individual jitter
+                    const wrappedText = text.split('').map((char, index) => {
+                        // 0.15 probability per letter
+                        if (Math.random() < 0.15) {
+                            return `<span class="quantum-jitter" data-char-index="${index}">${char}</span>`;
+                        }
+                        return char;
+                    }).join('');
+                    
+                    element.innerHTML = wrappedText;
+                    
+                    // Apply jitter to marked characters at 33Hz (invisible flicker)
+                    const jitterSpans = element.querySelectorAll('.quantum-jitter');
+                    
+                    jitterSpans.forEach(span => {
+                        let jitterInterval = setInterval(() => {
+                            // ±0.3px jitter using transform not position
+                            const jitterX = (Math.random() - 0.5) * 0.6; // ±0.3px
+                            const jitterY = (Math.random() - 0.5) * 0.6; // ±0.3px
+                            
+                            span.style.transform = `translate(${jitterX}px, ${jitterY}px)`;
+                        }, 1000 / 33); // 33Hz frequency
+                        
+                        State.memoryEnhancement.quantumVibrationIntervals.push(jitterInterval);
+                        
+                        // Stop jitter after 500ms per activation
+                        setTimeout(() => {
+                            clearInterval(jitterInterval);
+                            span.style.transform = '';
+                            State.memoryEnhancement.quantumVibrationIntervals = 
+                                State.memoryEnhancement.quantumVibrationIntervals.filter(i => i !== jitterInterval);
+                        }, 500);
+                    });
+                });
+            },
+            
+            // =====================================
+            // SYSTEM 36: Somatic Marker Hijacking
+            // =====================================
+            System36_SomaticMarkerHijacking() {
+                if (!State.cards.current || State.cards.current.wrongCount === 0) return;
+                
+                const now = performance.now();
+                // Minimum 3 second cooldown
+                if (now - State.memoryEnhancement.lastSomaticTime < 3000) return;
+                
+                const somaticElement = document.getElementById('somatic-marker');
+                if (!somaticElement) return;
+                
+                // Rotate through temperature word bank
+                const word = State.memoryEnhancement.somaticWordBank[State.memoryEnhancement.somaticWordIndex];
+                State.memoryEnhancement.somaticWordIndex = 
+                    (State.memoryEnhancement.somaticWordIndex + 1) % State.memoryEnhancement.somaticWordBank.length;
+                
+                // Position near answer text
+                const answerElement = document.getElementById('card-answer');
+                let x = window.innerWidth / 2;
+                let y = window.innerHeight / 2;
+                
+                if (answerElement) {
+                    const answerRect = answerElement.getBoundingClientRect();
+                    if (answerRect.width > 0) { // Answer is visible
+                        x = answerRect.right + 20; // 20px to the right of answer
+                        y = answerRect.top + (answerRect.height / 2); // Middle of answer height
+                    }
+                }
+                
+                // Set up somatic marker
+                somaticElement.textContent = word;
+                somaticElement.style.left = x + 'px';
+                somaticElement.style.top = y + 'px';
+                somaticElement.style.fontSize = '16px';
+                somaticElement.style.fontWeight = '300'; // Lighter weight
+                somaticElement.style.opacity = '0.019'; // Very subtle
+                
+                // Display for exactly 22ms to associate body sensations with memory
+                setTimeout(() => {
+                    somaticElement.style.opacity = '0';
+                }, 22);
+                
+                State.memoryEnhancement.lastSomaticTime = now;
+            },
+            
+            // =====================================
+            // NEW SYSTEM 37: Chronobiological Phase Coupling
+            // =====================================
+            System37_ChronobiologicalPhaseCoupling() {
+                if (State.memoryEnhancement.chronobiologicalTintApplied) return;
+                
+                const container = document.querySelector('.container');
+                if (!container) return;
+                
+                // Get system time and calculate minutes since midnight
+                const now = new Date();
+                const minutesSinceMidnight = now.getHours() * 60 + now.getMinutes();
+                
+                let tintFilter = '';
+                let tintStrength = 0;
+                
+                // Morning (360-540min = 6:00-9:00): bluish tint +5
+                if (minutesSinceMidnight >= 360 && minutesSinceMidnight <= 540) {
+                    tintFilter = 'sepia(0.06) hue-rotate(200deg) saturate(1.5)'; // Bluish
+                    tintStrength = 5;
+                }
+                // Afternoon (720-960min = 12:00-16:00): yellowish tint +3  
+                else if (minutesSinceMidnight >= 720 && minutesSinceMidnight <= 960) {
+                    tintFilter = 'sepia(0.06) hue-rotate(50deg) saturate(1.3)'; // Yellowish
+                    tintStrength = 3;
+                }
+                // Evening (1080-1320min = 18:00-22:00): reddish tint +7
+                else if (minutesSinceMidnight >= 1080 && minutesSinceMidnight <= 1320) {
+                    tintFilter = 'sepia(0.06) hue-rotate(320deg) saturate(1.7)'; // Reddish
+                    tintStrength = 7;
+                }
+                
+                // Apply subtle tint if in active time window
+                if (tintFilter) {
+                    container.classList.add('chronobiological-tint');
+                    container.style.filter = `${container.style.filter || ''} ${tintFilter}`;
+                    container.style.opacity = '0.94'; // 0.06 filter opacity effect
+                    State.memoryEnhancement.chronobiologicalTintApplied = true;
+                    
+                    // Aligns with circadian memory peaks - log for research
+                    console.log(`Chronobiological tint applied: ${tintStrength} at ${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`);
+                }
+            },
+            
+            // =====================================
+            // NEW SYSTEM 38: Mirror Neuron Activation Protocol
+            // =====================================
+            System38_MirrorNeuronActivationProtocol() {
+                if (!State.cards.current) return;
+                
+                const now = performance.now();
+                if (now - State.memoryEnhancement.lastHandwritingTime < 3000) return;
+                
+                const traceElement = document.getElementById('handwriting-trace');
+                const pathElement = document.getElementById('handwriting-path');
+                if (!traceElement || !pathElement) return;
+                
+                // Get first 2 characters of answer for hand-writing animation
+                const firstTwoChars = State.cards.current.answer.substring(0, 2);
+                if (!firstTwoChars) return;
+                
+                // Generate simple SVG path for writing motion (simplified cursive)
+                let pathData = '';
+                const charWidth = 20;
+                
+                firstTwoChars.split('').forEach((char, index) => {
+                    const x = index * charWidth + 10;
+                    const y = 20;
+                    
+                    // Simple letter shapes - just basic strokes
+                    switch (char.toLowerCase()) {
+                        case 'a':
+                            pathData += `M${x},${y+5} Q${x+5},${y-2} ${x+10},${y+5} M${x+3},${y+2} L${x+7},${y+2} `;
+                            break;
+                        case 'e':
+                            pathData += `M${x+8},${y+2} Q${x+2},${y+2} ${x+2},${y+6} Q${x+8},${y+6} ${x+8},${y+2} `;
+                            break;
+                        case 'i':
+                            pathData += `M${x+5},${y+8} L${x+5},${y+2} M${x+5},${y} L${x+5},${y} `;
+                            break;
+                        case 'o':
+                            pathData += `M${x+2},${y+4} Q${x+2},${y} ${x+8},${y} Q${x+8},${y+8} ${x+2},${y+8} Q${x+2},${y+4} ${x+2},${y+4} `;
+                            break;
+                        case 'u':
+                            pathData += `M${x+2},${y+2} Q${x+2},${y+8} ${x+8},${y+8} Q${x+8},${y+2} ${x+8},${y+2} `;
+                            break;
+                        default:
+                            // Generic stroke for other characters
+                            pathData += `M${x+2},${y+8} L${x+8},${y+2} M${x+2},${y+2} L${x+8},${y+8} `;
+                    }
+                });
+                
+                // Set path and reset animation
+                pathElement.setAttribute('d', pathData);
+                pathElement.style.strokeDasharray = '100';
+                pathElement.style.strokeDashoffset = '100';
+                
+                // Show trace element
+                traceElement.style.opacity = '0.028';
+                
+                // Animate at 3x speed (400ms / 3 ≈ 133ms, but using 400ms for smoother motion)
+                pathElement.style.animation = 'handwritingAnimation 400ms ease-out forwards';
+                
+                // Hide after duration
+                setTimeout(() => {
+                    traceElement.style.opacity = '0';
+                    pathElement.style.animation = '';
+                }, 400);
+                
+                State.memoryEnhancement.lastHandwritingTime = now;
+            },
+            
+            // =====================================
+            // NEW SYSTEM 39: Subliminal Confidence Injection
+            // =====================================
+            System39_SubliminalConfidenceInjection(isCorrect) {
+                const now = performance.now();
+                if (now - State.memoryEnhancement.lastConfidenceFlashTime < 500) return;
+                
+                const flashElement = document.getElementById('confidence-flash');
+                if (!flashElement) return;
+                
+                // Choose symbol and color based on response
+                const symbol = isCorrect ? '✓' : '→';
+                const color = isCorrect ? '#4caf50' : '#2196f3'; // Green for correct, blue for incorrect
+                
+                // Position in peripheral vision (edge of screen)
+                const edge = Math.floor(Math.random() * 4); // 0=top, 1=right, 2=bottom, 3=left
+                let x, y;
+                
+                switch (edge) {
+                    case 0: // Top edge
+                        x = Math.random() * (window.innerWidth - 100) + 50;
+                        y = 50;
+                        break;
+                    case 1: // Right edge
+                        x = window.innerWidth - 80;
+                        y = Math.random() * (window.innerHeight - 100) + 50;
+                        break;
+                    case 2: // Bottom edge
+                        x = Math.random() * (window.innerWidth - 100) + 50;
+                        y = window.innerHeight - 80;
+                        break;
+                    case 3: // Left edge
+                        x = 50;
+                        y = Math.random() * (window.innerHeight - 100) + 50;
+                        break;
+                }
+                
+                // Set up confidence flash
+                flashElement.textContent = symbol;
+                flashElement.style.left = x + 'px';
+                flashElement.style.top = y + 'px';
+                flashElement.style.fontSize = '36px';
+                flashElement.style.color = color;
+                flashElement.style.opacity = '0.021'; // Very subtle opacity
+                
+                // Flash for exactly 11ms to bypass conscious evaluation
+                setTimeout(() => {
+                    flashElement.style.opacity = '0';
+                }, 11);
+                
+                State.memoryEnhancement.lastConfidenceFlashTime = now;
+            },
+            
+            // =====================================
+            // NEW SYSTEM 40: Delta Wave Memory Consolidation
+            // =====================================
+            System40_DeltaWaveMemoryConsolidation() {
+                // Only during breaks
+                if (!State.session.isBreak) return;
+                if (State.memoryEnhancement.deltaWavePulseActive) return;
+                
+                State.memoryEnhancement.deltaWavePulseActive = true;
+                
+                const container = document.querySelector('.container');
+                if (!container) return;
+                
+                // Apply delta wave pulse class for CSS transitions
+                container.classList.add('delta-wave-pulse');
+                
+                // 2Hz pulsing (500ms per cycle)
+                let pulseCount = 0;
+                const maxPulses = 8; // 4 seconds total
+                
+                State.memoryEnhancement.deltaWaveInterval = setInterval(() => {
+                    if (pulseCount >= maxPulses) {
+                        clearInterval(State.memoryEnhancement.deltaWaveInterval);
+                        container.classList.remove('delta-wave-pulse');
+                        container.style.opacity = '1';
+                        State.memoryEnhancement.deltaWavePulseActive = false;
+                        
+                        // Clean up Schumann resonance
+                        if (State.memoryEnhancement.schumannResonanceOscillator) {
+                            State.memoryEnhancement.schumannGainNode.gain.exponentialRampToValueAtTime(
+                                0.001, State.settings.audioContext.currentTime + 0.5
+                            );
+                            setTimeout(() => {
+                                State.memoryEnhancement.schumannResonanceOscillator.stop();
+                                State.memoryEnhancement.schumannResonanceOscillator.disconnect();
+                                State.memoryEnhancement.schumannResonanceOscillator = null;
+                                State.memoryEnhancement.schumannGainNode = null;
+                            }, 500);
+                        }
+                        return;
+                    }
+                    
+                    // Pulse between 0.97 and 1.03 opacity
+                    const opacity = pulseCount % 2 === 0 ? '0.97' : '1.03';
+                    container.style.opacity = opacity;
+                    pulseCount++;
+                }, 250); // 500ms cycle / 2 = 250ms per half-cycle
+                
+                // Combine with 7.83Hz Schumann resonance audio
+                if (State.settings.soundEnabled && State.settings.audioContext) {
+                    try {
+                        const context = State.settings.audioContext;
+                        const oscillator = context.createOscillator();
+                        const gainNode = context.createGain();
+                        
+                        oscillator.frequency.value = 7.83; // Schumann resonance
+                        oscillator.type = 'sine';
+                        gainNode.gain.value = 0.004; // Very quiet
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(context.destination);
+                        
+                        oscillator.start();
+                        
+                        State.memoryEnhancement.schumannResonanceOscillator = oscillator;
+                        State.memoryEnhancement.schumannGainNode = gainNode;
+                        
+                    } catch (error) {
+                        // Schumann resonance audio failed
+                    }
+                }
+            },
+            
+            // =====================================
+            // NEW SYSTEM 41: Phantom Touch Memory Encoding
+            // =====================================
+            System41_PhantomTouchMemoryEncoding() {
+                // This system is CSS-based and triggered by hover states
+                // The .phantom-touch class is already applied to .card-container
+                // CSS handles the shadow transitions on hover automatically
+                
+                // We can enhance it by scaling with card importance
+                if (!State.cards.current) return;
+                
+                const container = document.querySelector('.card-container');
+                if (!container) return;
+                
+                // Scale shadow intensity with card difficulty
+                const difficultyFactor = Math.max(0.5, Math.min(2.0, State.cards.current.difficulty + 1));
+                const baseShadow = '2px 2px 3px';
+                const enhancedShadow = `${3 * difficultyFactor}px ${3 * difficultyFactor}px ${5 * difficultyFactor}px`;
+                
+                // Apply enhanced shadow mapping for this card
+                container.style.setProperty('--base-shadow', baseShadow);
+                container.style.setProperty('--enhanced-shadow', enhancedShadow);
+                
+                // Update CSS custom properties for this card
+                container.style.boxShadow = `${baseShadow} var(--shadow)`;
+            },
+            
+            // =====================================
+            // NEW SYSTEM 42: Accelerometer Rhythm Encoding (Mobile Only)
+            // =====================================
+            System42_AccelerometerRhythmEncoding(deviceMotionEvent) {
+                if (!State.memoryEnhancement.isMobileDevice || !State.cards.current) return;
+                
+                const now = performance.now();
+                if (now - State.memoryEnhancement.lastAccelerometerFlashTime < 100) return; // 100ms cooldown
+                
+                // Analyze accelerometer data for natural hand tremor (8-12Hz)
+                const acceleration = deviceMotionEvent.acceleration;
+                if (!acceleration || !acceleration.x || !acceleration.y || !acceleration.z) return;
+                
+                // Calculate total acceleration magnitude
+                const magnitude = Math.sqrt(
+                    acceleration.x * acceleration.x + 
+                    acceleration.y * acceleration.y + 
+                    acceleration.z * acceleration.z
+                );
+                
+                // Detect tremor frequency - simplified detection
+                // In real implementation, this would use FFT analysis
+                const tremor = magnitude > 0.1 && magnitude < 2.0; // Reasonable tremor range
+                
+                if (!tremor) return;
+                
+                // Sync flash timing to detected tremor phase
+                const tremorPeriod = 1000 / State.memoryEnhancement.handTremorFrequency; // ~100ms for 10Hz
+                const phaseOffset = (now % tremorPeriod) / tremorPeriod;
+                
+                // Only flash when tremor is in optimal phase (0.2-0.4 of cycle)
+                if (phaseOffset < 0.2 || phaseOffset > 0.4) return;
+                
+                const flashElement = document.getElementById('accelerometer-flash');
+                if (!flashElement) return;
+                
+                // Position flash based on device orientation
+                const x = window.innerWidth * (0.3 + acceleration.x * 0.1); // ±10% variance
+                const y = window.innerHeight * (0.3 + acceleration.y * 0.1); // ±10% variance
+                
+                // Set up accelerometer flash
+                flashElement.textContent = '◦'; // Small circle indicator
+                flashElement.style.left = Math.max(50, Math.min(window.innerWidth - 50, x)) + 'px';
+                flashElement.style.top = Math.max(50, Math.min(window.innerHeight - 50, y)) + 'px';
+                flashElement.style.fontSize = '18px';
+                flashElement.style.color = '#1976d2';
+                flashElement.style.opacity = '0.014'; // Very subtle
+                
+                // Flash for exactly 16ms synchronized to tremor
+                setTimeout(() => {
+                    flashElement.style.opacity = '0';
+                }, 16);
+                
+                State.memoryEnhancement.lastAccelerometerFlashTime = now;
+            },
+            
+            // Helper function to find semantic relations (from System 30)
             findSemanticRelations(keyWord) {
                 const database = State.memoryEnhancement.semanticWordDatabase;
                 const related = [];
@@ -2472,7 +3318,7 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                 return shuffled.slice(0, 5); // Return up to 5 words
             },
             
-            // Helper function to calculate user tempo
+            // Helper function to calculate user tempo for System 31
             calculateUserTempo(times) {
                 if (times.length < 2) return;
                 
@@ -2504,7 +3350,7 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                 
                 switch(event) {
                     case 'cardDisplay':
-                        // Systems activated on card display
+                        // Systems activated on card display (1-36)
                         this.System4_MicroPriming();
                         this.System5_VisualMemoryEncoding();
                         this.System12_BinauralBeats('question');
@@ -2520,11 +3366,22 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                         this.System24_ChronestheticTimeWarping();
                         this.System25_ParallelReality();
                         this.System26_SubliminalSuccessAnchoring();
-                        // NEW SYSTEMS 27-30
+                        // Systems 27-30
                         this.System27_RetinalPersistenceAfterimage();
                         this.System28_InfrasonicResonance();
                         this.System29_StatisticalBlinkWindow();
                         this.System30_SemanticNetworkPriming();
+                        // Systems 31-36
+                        this.System31_PhaseLockedNeuralOscillation();
+                        this.System32_VestibularMemoryEncoding();
+                        this.System33_CorticalSpreadingDepressionBypass();
+                        this.System34_SubliminalEmotionalTagging();
+                        this.System35_QuantumFieldTextVibration();
+                        this.System36_SomaticMarkerHijacking();
+                        // NEW SYSTEMS 37-42
+                        this.System37_ChronobiologicalPhaseCoupling();
+                        this.System38_MirrorNeuronActivationProtocol();
+                        this.System41_PhantomTouchMemoryEncoding();
                         break;
                         
                     case 'answerReveal':
@@ -2534,30 +3391,32 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                         State.memoryEnhancement.quantumCyclingInterval = [];
                         break;
                         
-                    case 'response':
+                    case 'responseCorrect':
                         const responseTime = performance.now() - State.timing.cardDisplayStartTime;
                         this.System1_ResponseTimeDetection(responseTime);
                         this.System2_PredictionErrorOptimization();
                         this.System8_QuantumScheduling();
                         this.System10_FatigueDetection();
+                        // NEW: System 39 for correct responses
+                        this.System39_SubliminalConfidenceInjection(true);
                         
                         if (State.performance.totalCorrect > State.performance.totalAttempts * 0.5) {
                             this.System19_FlickerConsolidation();
                         }
                         
-                        // Clear quantum cycling on response
-                        State.memoryEnhancement.quantumCyclingInterval.forEach(clearInterval);
-                        State.memoryEnhancement.quantumCyclingInterval = [];
+                        this.cleanupAfterResponse();
+                        break;
                         
-                        // Clear used preload cache
-                        this.clearPreloadCache();
+                    case 'responseIncorrect':
+                        const responseTimeWrong = performance.now() - State.timing.cardDisplayStartTime;
+                        this.System1_ResponseTimeDetection(responseTimeWrong);
+                        this.System2_PredictionErrorOptimization();
+                        this.System8_QuantumScheduling();
+                        this.System10_FatigueDetection();
+                        // NEW: System 39 for incorrect responses
+                        this.System39_SubliminalConfidenceInjection(false);
                         
-                        // Stop infrasonic oscillator on response
-                        if (State.memoryEnhancement.infrasonicOscillator) {
-                            State.memoryEnhancement.infrasonicOscillator.stop();
-                            State.memoryEnhancement.infrasonicOscillator.disconnect();
-                            State.memoryEnhancement.infrasonicOscillator = null;
-                        }
+                        this.cleanupAfterResponse();
                         break;
                         
                     case 'phaseStart':
@@ -2567,20 +3426,56 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                         
                     case 'sessionPause':
                         this.System9_CovertRetrieval();
-                        // Pause quantum cycling during breaks
-                        State.memoryEnhancement.quantumCyclingInterval.forEach(clearInterval);
-                        State.memoryEnhancement.quantumCyclingInterval = [];
+                        this.pauseAllSystems();
+                        break;
                         
-                        // Pause infrasonic resonance
-                        if (State.memoryEnhancement.infrasonicOscillator) {
-                            State.memoryEnhancement.infrasonicGainNode.gain.value = 0;
-                        }
+                    case 'breakStart':
+                        // NEW: System 40 activates during breaks
+                        this.System40_DeltaWaveMemoryConsolidation();
+                        this.pauseAllSystems();
                         break;
                         
                     case 'specialCard':
                         this.System6_ConsolidationWindow();
                         this.System11_DistinctivenessBoost();
                         break;
+                }
+            },
+            
+            // Helper function to clean up after response
+            cleanupAfterResponse() {
+                // Clear quantum cycling on response
+                State.memoryEnhancement.quantumCyclingInterval.forEach(clearInterval);
+                State.memoryEnhancement.quantumCyclingInterval = [];
+                
+                // Clear quantum vibration intervals
+                State.memoryEnhancement.quantumVibrationIntervals.forEach(clearInterval);
+                State.memoryEnhancement.quantumVibrationIntervals = [];
+                
+                // Clear used preload cache
+                this.clearPreloadCache();
+                
+                // Stop infrasonic oscillator on response
+                if (State.memoryEnhancement.infrasonicOscillator) {
+                    State.memoryEnhancement.infrasonicOscillator.stop();
+                    State.memoryEnhancement.infrasonicOscillator.disconnect();
+                    State.memoryEnhancement.infrasonicOscillator = null;
+                }
+            },
+            
+            // Helper function to pause systems during breaks/pauses
+            pauseAllSystems() {
+                // Pause quantum cycling during breaks
+                State.memoryEnhancement.quantumCyclingInterval.forEach(clearInterval);
+                State.memoryEnhancement.quantumCyclingInterval = [];
+                
+                // Pause quantum vibration during breaks
+                State.memoryEnhancement.quantumVibrationIntervals.forEach(clearInterval);
+                State.memoryEnhancement.quantumVibrationIntervals = [];
+                
+                // Pause infrasonic resonance
+                if (State.memoryEnhancement.infrasonicOscillator) {
+                    State.memoryEnhancement.infrasonicGainNode.gain.value = 0;
                 }
             }
         };
@@ -2786,11 +3681,27 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                     State.memoryEnhancement.quantumCyclingInterval.forEach(clearInterval);
                     State.memoryEnhancement.quantumCyclingInterval = [];
                     
+                    // Clear quantum vibration intervals
+                    State.memoryEnhancement.quantumVibrationIntervals.forEach(clearInterval);
+                    State.memoryEnhancement.quantumVibrationIntervals = [];
+                    
                     // Clean up infrasonic oscillator
                     if (State.memoryEnhancement.infrasonicOscillator) {
                         State.memoryEnhancement.infrasonicOscillator.stop();
                         State.memoryEnhancement.infrasonicOscillator.disconnect();
                         State.memoryEnhancement.infrasonicOscillator = null;
+                    }
+                    
+                    // Clean up delta wave interval
+                    if (State.memoryEnhancement.deltaWaveInterval) {
+                        clearInterval(State.memoryEnhancement.deltaWaveInterval);
+                        State.memoryEnhancement.deltaWaveInterval = null;
+                    }
+                    
+                    // Clean up accelerometer
+                    if (State.memoryEnhancement.deviceMotionHandler) {
+                        window.removeEventListener('devicemotion', State.memoryEnhancement.deviceMotionHandler);
+                        State.memoryEnhancement.deviceMotionHandler = null;
                     }
                     
                     // Reset state
@@ -2829,6 +3740,9 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                     MemoryEnhancement.clearPreloadCache();
                     State.memoryEnhancement.chronestheticAdjustments.clear();
                     State.memoryEnhancement.retinalAfterimageActive = false;
+                    State.memoryEnhancement.corticalRingActive = false;
+                    State.memoryEnhancement.chronobiologicalTintApplied = false;
+                    State.memoryEnhancement.deltaWavePulseActive = false;
                 },
                 
                 complete() {
@@ -2849,11 +3763,29 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                     State.memoryEnhancement.quantumCyclingInterval.forEach(clearInterval);
                     State.memoryEnhancement.quantumCyclingInterval = [];
                     
+                    // Clear quantum vibration intervals
+                    State.memoryEnhancement.quantumVibrationIntervals.forEach(clearInterval);
+                    State.memoryEnhancement.quantumVibrationIntervals = [];
+                    
                     // Clean up infrasonic oscillator
                     if (State.memoryEnhancement.infrasonicOscillator) {
                         State.memoryEnhancement.infrasonicOscillator.stop();
                         State.memoryEnhancement.infrasonicOscillator.disconnect();
                         State.memoryEnhancement.infrasonicOscillator = null;
+                    }
+                    
+                    // Clean up delta wave systems
+                    if (State.memoryEnhancement.deltaWaveInterval) {
+                        clearInterval(State.memoryEnhancement.deltaWaveInterval);
+                    }
+                    if (State.memoryEnhancement.schumannResonanceOscillator) {
+                        State.memoryEnhancement.schumannResonanceOscillator.stop();
+                        State.memoryEnhancement.schumannResonanceOscillator.disconnect();
+                    }
+                    
+                    // Clean up accelerometer
+                    if (State.memoryEnhancement.deviceMotionHandler) {
+                        window.removeEventListener('devicemotion', State.memoryEnhancement.deviceMotionHandler);
                     }
                     
                     const pauseToggle = document.getElementById('pause-toggle');
@@ -3098,6 +4030,7 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                         container.style.textShadow = '';
                         container.style.transform = '';
                         container.classList.remove('distinctiveness-boost');
+                        container.classList.remove('vestibular-shift');
                     }
                     
                     this.updateDifficultyIndicator();
@@ -3158,8 +4091,8 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                         this.recordResponse(true);
                         this.checkAchievements();
                         
-                        // Trigger memory systems
-                        MemoryEnhancement.orchestrate('response');
+                        // Trigger memory systems with correct response
+                        MemoryEnhancement.orchestrate('responseCorrect');
                         
                         ScholarSRS.Audio.playSuccess();
                         ScholarSRS.Stats.update();
@@ -3181,8 +4114,8 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                         this.recordResponse(false);
                         this.rescheduleCard();
                         
-                        // Trigger memory systems
-                        MemoryEnhancement.orchestrate('response');
+                        // Trigger memory systems with incorrect response
+                        MemoryEnhancement.orchestrate('responseIncorrect');
                         
                         ScholarSRS.Audio.playError();
                         ScholarSRS.Stats.update();
@@ -3319,8 +4252,15 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                         State.memoryEnhancement.quantumCyclingInterval.forEach(clearInterval);
                         State.memoryEnhancement.quantumCyclingInterval = [];
                         
+                        // Clear quantum vibration during break
+                        State.memoryEnhancement.quantumVibrationIntervals.forEach(clearInterval);
+                        State.memoryEnhancement.quantumVibrationIntervals = [];
+                        
                         ScholarSRS.UI.switchToBreakScreen();
                         ScholarSRS.Audio.playBreak();
+                        
+                        // Trigger break-specific memory systems
+                        MemoryEnhancement.orchestrate('breakStart');
                         
                         let breakDuration = CONFIG.BREAK_DURATION;
                         State.timing.savedBreakDuration = breakDuration;
@@ -3360,6 +4300,24 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                         State.session.isBreak = false;
                         if (State.timing.breakInterval) clearInterval(State.timing.breakInterval);
                         
+                        // Clean up delta wave systems
+                        if (State.memoryEnhancement.deltaWaveInterval) {
+                            clearInterval(State.memoryEnhancement.deltaWaveInterval);
+                            State.memoryEnhancement.deltaWaveInterval = null;
+                            State.memoryEnhancement.deltaWavePulseActive = false;
+                        }
+                        if (State.memoryEnhancement.schumannResonanceOscillator) {
+                            State.memoryEnhancement.schumannGainNode.gain.exponentialRampToValueAtTime(
+                                0.001, State.settings.audioContext.currentTime + 0.5
+                            );
+                            setTimeout(() => {
+                                State.memoryEnhancement.schumannResonanceOscillator.stop();
+                                State.memoryEnhancement.schumannResonanceOscillator.disconnect();
+                                State.memoryEnhancement.schumannResonanceOscillator = null;
+                                State.memoryEnhancement.schumannGainNode = null;
+                            }, 500);
+                        }
+                        
                         ScholarSRS.UI.switchToStudyScreen();
                         ScholarSRS.Audio.playSuccess();
                         ScholarSRS.Achievement.show('Session Resumed', 'Continue your path to mastery');
@@ -3369,7 +4327,7 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                         
                     } catch (error) {
                         ScholarSRS.Error.handle('breakEnd', error);
-                        ScholarSRS.UI.switchToStudyScreen();
+                        ScholarSRS.UI.switchToStudySc                        <button class="btn" id="start-button" onclick="ScholarSRS.startSession()">Commence Study Session</button>                        <button class="btn" id="start-button" onclick="ScholarSRS.startSession()">Commence Study Session</button>reen();
                         State.timing.timerInterval = setInterval(() => ScholarSRS.Timer.update(), CONFIG.PROGRESS_UPDATE_INTERVAL);
                     }
                 },
@@ -3606,6 +4564,15 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                     // Pause quantum cycling
                     State.memoryEnhancement.quantumCyclingInterval.forEach(clearInterval);
                     State.memoryEnhancement.quantumCyclingInterval = [];
+                    
+                    // Pause quantum vibration
+                    State.memoryEnhancement.quantumVibrationIntervals.forEach(clearInterval);
+                    State.memoryEnhancement.quantumVibrationIntervals = [];
+                    
+                    // Pause delta wave systems
+                    if (State.memoryEnhancement.deltaWaveInterval) {
+                        clearInterval(State.memoryEnhancement.deltaWaveInterval);
+                    }
                 },
                 
                 resumeTimers() {
@@ -3620,6 +4587,11 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                                 }
                             }
                         }, 1000);
+                        
+                        // Resume delta wave systems if they were active
+                        if (State.memoryEnhancement.deltaWavePulseActive) {
+                            MemoryEnhancement.System40_DeltaWaveMemoryConsolidation();
+                        }
                     } else {
                         State.timing.timerInterval = setInterval(() => ScholarSRS.Timer.update(), CONFIG.PROGRESS_UPDATE_INTERVAL);
                     }
@@ -3860,8 +4832,8 @@ def index():
     return render_template_string(HTML_TEMPLATE)
 
 if __name__ == "__main__":
-    print("🎓 Scholar's Spaced Repetition System v2.0")
-    print("📚 Launching with 30 Subliminal Memory Enhancement Systems")
+    print("🎓 Scholar's Spaced Repetition System v2.0 - COMPLETE")
+    print("📚 Launching with ALL 42 Subliminal Memory Enhancement Systems")
     print()
     
     if not check_port_availability():
@@ -3876,15 +4848,21 @@ if __name__ == "__main__":
     print()
     print("📖 Features:")
     print("   • Seven-phase progressive learning system")
-    print("   • 30 subliminal memory enhancement systems (NEW: Systems 27-30)")
-    print("   • System 27: Retinal Persistence Afterimage Encoding")
-    print("   • System 28: Infrasonic Resonance Memory Binding") 
-    print("   • System 29: Statistical Blink Window Injection")
-    print("   • System 30: Semantic Network Priming Cascade")
+    print("   • ALL 42 subliminal memory enhancement systems (COMPLETE)")
+    print("   • Systems 1-36: Core memory enhancement suite") 
+    print("   • System 37: Chronobiological Phase Coupling")
+    print("   • System 38: Mirror Neuron Activation Protocol")
+    print("   • System 39: Subliminal Confidence Injection")
+    print("   • System 40: Delta Wave Memory Consolidation")
+    print("   • System 41: Phantom Touch Memory Encoding")
+    print("   • System 42: Accelerometer Rhythm Encoding (Mobile)")
     print("   • Adaptive difficulty and spaced repetition")
     print("   • Real-time performance analytics")
     print("   • Pomodoro-style breaks")
     print("   • Audio feedback and binaural beats")
+    print("   • Advanced neural synchronization systems")
+    print("   • Circadian rhythm optimization")
+    print("   • Mobile device motion integration")
     print()
     print("⚡ Press Ctrl+C to stop the server")
     print("=" * 50)
@@ -3894,4 +4872,3 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("\n\n✨ Thank you for using Scholar's SRS!")
         print("📚 Your knowledge journey continues!")
-            
