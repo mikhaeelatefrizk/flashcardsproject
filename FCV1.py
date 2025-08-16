@@ -6,18 +6,23 @@ Version 2.0 - COMPLETE (Systems 1-42)
 """
 
 from threading import Timer
+import subprocess  # Add this import
+import sys
 
 def install_dependencies():
-    import subprocess
-    import sys
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'flask'])
+    try:
+        subprocess.run(['pip', 'install', 'flask'], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error installing dependencies: {e}")
+        raise
 
 def check_port_availability():
-    import socket
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    result = sock.connect_ex(('127.0.0.1', 5000))
-    sock.close()
-    return result != 0
+    try:
+        subprocess.run(['netstat', '-an'], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error checking port: {e}")
+        return False
+    return True
 
 def open_browser():
     import webbrowser
@@ -28,10 +33,10 @@ install_dependencies()
 
 # Import Flask
 try:
-    from flask import Flask
+    from flask import Flask, render_template_string
 except ImportError:
     print("Failed to import Flask. Please make sure it's installed.")
-    exit(1)
+    sys.exit(1)
 
 app = Flask(__name__)
 
@@ -1307,7 +1312,6 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                 // Systems 31-36 state
                 interactionTimes: [],
                 lastPhaseLockedTime: 0,
-                phaseLockedInterval: null,
                 vestibularDirection: 0,
                 lastVestibularTime: 0,
                 corticalRingActive: false,
@@ -2084,34 +2088,7 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                 const container = document.querySelector('.container');
                 if (!container) return;
                 
-                container.style.animation = 'flicker 0.5s ease-in-out 4';
-                
-                set
-                const stats = State.cards.stats.get(State.cards.current.id);
-                if (stats && stats.totalSeen > 1) {
-                    const storedPattern = State.memoryEnhancement.temporalPatterns.get(State.cards.current.id);
-                    if (storedPattern) {
-                        setTimeout(() => {
-                            // Subtle timing adjustment
-                            const container = document.querySelector('.card-container');
-                            if (container) {
-                                container.style.transition = `opacity ${storedPattern}ms`;
-                            }
-                        }, 0);
-                    }
-                }
-            },
-            
-            // =====================================
-            // SYSTEM 19: Screen Flicker Consolidation
-            // =====================================
-            System19_FlickerConsolidation() {
-                if (!State.cards.current || State.cards.current.wrongCount > 0) return;
-                
-                const container = document.querySelector('.container');
-                if (!container) return;
-                
-                container.style.animation = 'flicker 0.5s ease-in-out 4';
+                container.style.animation = 'flicker  0.5s ease-in-out 4';
                 
                 setTimeout(() => {
                     container.style.animation = '';
@@ -4004,6 +3981,29 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                 
                 updateCardState() {
                     const now = performance.now();
+                    State.cards.current.lastSeen = (now - State.session.preciseStartTime) / (1000 * 60);
+                    State.cards.current.totalSeen++;
+                    State.cards.current.lastResponseTime = now;
+                    State.performance.cardsSeenInSession++;
+                },
+                
+                updateUI() {
+                    const questionElement = document.getElementById('card-question');
+                    const answerElement = document.getElementById('card-answer');
+                    
+                    if (questionElement && answerElement) {
+                        questionElement.textContent = State.cards.current.question || 'Invalid question';
+                        answerElement.textContent = State.cards.current.answer || 'Invalid answer';
+                        answerElement.classList.remove('show');
+                    }
+                    
+                    // Reset any distinctive effects
+                    const container = document.querySelector('.card-container');
+                    if (container) {
+                        container.style.fontSize = '';
+                        container.style.letterSpacing = '';
+                        container.style.textShadow = '';
+                        container.style.transform = '';
                     State.cards.current.lastSeen = (now - State.session.preciseStartTime) / (1000 * 60);
                     State.cards.current.totalSeen++;
                     State.cards.current.lastResponseTime = now;
