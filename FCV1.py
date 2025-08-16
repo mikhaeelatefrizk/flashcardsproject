@@ -5,60 +5,33 @@ Enhanced with 42 Subliminal Memory Systems
 Version 2.0 - COMPLETE (Systems 1-42)
 """
 
-import sys
-import subprocess
-import webbrowser
 from threading import Timer
 
 def install_dependencies():
-    """Install required dependencies if they're not available"""
-    required_packages = ['flask']
-    
-    for package in required_packages:
-        try:
-            __import__(package)
-        except ImportError:
-            try:
-                subprocess.check_call([sys.executable, '-m', 'pip', 'install', package])
-            except subprocess.CalledProcessError:
-                print("💡 Try manually running: pip install flask")
-                input("Press Enter to exit...")
-                sys.exit(1)
+    import subprocess
+    import sys
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'flask'])
 
 def check_port_availability():
-    """Check if port 5000 is available"""
     import socket
-    try:
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(1)
-        result = sock.connect_ex(('127.0.0.1', 5000))
-        sock.close()
-        if result == 0:
-            print("⚠️ Port 5000 is already in use")
-            print("💡 Another application might be using port 5000")
-            print("💡 Try closing other applications or restart your computer")
-            return False
-        return True
-    except:
-        return True
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    result = sock.connect_ex(('127.0.0.1', 5000))
+    sock.close()
+    return result != 0
 
 def open_browser():
-    """Open browser after a short delay"""
-    try:
-        webbrowser.open('http://127.0.0.1:5000')
-    except:
-        print("🌐 Please manually open: http://127.0.0.1:5000")
+    import webbrowser
+    webbrowser.open('http://127.0.0.1:5000')
 
 # Install dependencies first
 install_dependencies()
 
 # Import Flask
 try:
-    from flask import Flask, render_template_string
+    from flask import Flask
 except ImportError:
-    print("💡 Try manually running: pip install flask")
-    input("Press Enter to exit...")
-    sys.exit(1)
+    print("Failed to import Flask. Please make sure it's installed.")
+    exit(1)
 
 app = Flask(__name__)
 
@@ -2087,6 +2060,33 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                 State.memoryEnhancement.temporalPatterns.set(State.cards.current.id, displayTime);
                 
                 // Apply timing on reviews
+                const stats = State.cards.stats.get(State.cards.current.id);
+                if (stats && stats.totalSeen > 1) {
+                    const storedPattern = State.memoryEnhancement.temporalPatterns.get(State.cards.current.id);
+                    if (storedPattern) {
+                        setTimeout(() => {
+                            // Subtle timing adjustment
+                            const container = document.querySelector('.card-container');
+                            if (container) {
+                                container.style.transition = `opacity ${storedPattern}ms`;
+                            }
+                        }, 0);
+                    }
+                }
+            },
+            
+            // =====================================
+            // SYSTEM 19: Screen Flicker Consolidation
+            // =====================================
+            System19_FlickerConsolidation() {
+                if (!State.cards.current || State.cards.current.wrongCount > 0) return;
+                
+                const container = document.querySelector('.container');
+                if (!container) return;
+                
+                container.style.animation = 'flicker 0.5s ease-in-out 4';
+                
+                set
                 const stats = State.cards.stats.get(State.cards.current.id);
                 if (stats && stats.totalSeen > 1) {
                     const storedPattern = State.memoryEnhancement.temporalPatterns.get(State.cards.current.id);
