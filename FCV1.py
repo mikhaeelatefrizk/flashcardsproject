@@ -4,12 +4,9 @@ Scholar's Spaced Repetition System - Python Server
 Enhanced with 42 Subliminal Memory Systems
 Version 2.0 - COMPLETE (Systems 1-42)
 """
-
-import os
 import sys
 import subprocess
 import webbrowser
-import time
 from threading import Timer
 
 def install_dependencies():
