@@ -65,7 +65,7 @@ except ImportError:
 app = Flask(__name__)
 
 # HTML template with modular, extensible architecture and 42 Memory Systems
-HTML_TEMPLATE = '''<!DOCTYPE html>
+HTML_TEMPLATE = r'''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
