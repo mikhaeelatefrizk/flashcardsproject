@@ -1,45 +1,7 @@
 version = 1
 
 [[analyzers]]
-name = "solhint"
-type = "community"
-
-[[analyzers]]
-name = "slither"
-type = "community"
-
-[[analyzers]]
-name = "kube-linter"
-type = "community"
-
-[[analyzers]]
-name = "dart-analyze"
-type = "community"
-
-[[analyzers]]
-name = "cfn-lint"
-type = "community"
-
-[[analyzers]]
-name = "test-coverage"
-
-[[analyzers]]
-name = "terraform"
-
-[[analyzers]]
-name = "swift"
-
-[[analyzers]]
-name = "shell"
-
-[[analyzers]]
 name = "secrets"
-
-[[analyzers]]
-name = "scala"
-
-[[analyzers]]
-name = "ruby"
 
 [[analyzers]]
 name = "javascript"
@@ -66,19 +28,10 @@ name = "javascript"
   ]
 
 [[analyzers]]
-name = "go"
-
-  [analyzers.meta]
-  import_root = "github.com/mikhaeelatefrizk/flashcardsproject"
-
-[[analyzers]]
 name = "cxx"
 
 [[analyzers]]
 name = "csharp"
-
-[[analyzers]]
-name = "ansible"
 
 [[analyzers]]
 name = "python"
@@ -102,28 +55,10 @@ name = "black"
 name = "yapf"
 
 [[transformers]]
-name = "swift-format"
-
-[[transformers]]
-name = "scalafmt"
-
-[[transformers]]
-name = "standardrb"
-
-[[transformers]]
-name = "rubocop"
-
-[[transformers]]
 name = "prettier"
 
 [[transformers]]
 name = "standardjs"
-
-[[transformers]]
-name = "gofmt"
-
-[[transformers]]
-name = "gofumpt"
 
 [[transformers]]
 name = "clang-format"
