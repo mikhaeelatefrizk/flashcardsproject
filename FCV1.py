@@ -4,33 +4,38 @@ Scholar's Spaced Repetition System - Python Server
 Enhanced with 42 Subliminal Memory Systems
 Version 2.0 - COMPLETE (Systems 1-42)
 """
-import sys
+
 import subprocess
+import sys
 import webbrowser
 from threading import Timer
 
+
 def install_dependencies():
     """Install required dependencies if they're not available"""
-    required_packages = ['flask']
-    
+    required_packages = ["flask"]
+
     for package in required_packages:
         try:
             __import__(package)
         except ImportError:
             try:
-                subprocess.check_call([sys.executable, '-m', 'pip', 'install', package])
+                subprocess.check_call(
+                    [sys.executable, "-m", "pip", "install", package])
             except subprocess.CalledProcessError:
                 print("💡 Try manually running: pip install flask")
                 input("Press Enter to exit...")
                 sys.exit(1)
 
+
 def check_port_availability():
     """Check if port 5000 is available"""
     import socket
+
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(1)
-        result = sock.connect_ex(('127.0.0.1', 5000))
+        result = sock.connect_ex(("127.0.0.1", 5000))
         sock.close()
         if result == 0:
             print("⚠️ Port 5000 is already in use")
@@ -41,12 +46,14 @@ def check_port_availability():
     except:
         return True
 
+
 def open_browser():
     """Open browser after a short delay"""
     try:
-        webbrowser.open('http://127.0.0.1:5000')
+        webbrowser.open("http://127.0.0.1:5000")
     except:
         print("🌐 Please manually open: http://127.0.0.1:5000")
+
 
 # Install dependencies first
 install_dependencies()
@@ -62,7 +69,7 @@ except ImportError:
 app = Flask(__name__)
 
 # HTML template with modular, extensible architecture and 42 Memory Systems
-HTML_TEMPLATE = r'''<!DOCTYPE html>
+HTML_TEMPLATE = r"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -4822,31 +4829,33 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
         });
     </script>
 </body>
-</html>'''
+</html>"""
 
-@app.route('/')
+
+@app.route("/")
 def index():
     return render_template_string(HTML_TEMPLATE)
+
 
 if __name__ == "__main__":
     print("🎓 Scholar's Spaced Repetition System v2.0 - COMPLETE")
     print("📚 Launching with ALL 42 Subliminal Memory Enhancement Systems")
     print()
-    
+
     if not check_port_availability():
         input("Press Enter to exit...")
         sys.exit(1)
-    
+
     # Start browser after a small delay
     Timer(1.0, open_browser).start()
-    
+
     print("🚀 Starting server...")
     print("🌐 Access your learning system at: http://127.0.0.1:5000")
     print()
     print("📖 Features:")
     print("   • Seven-phase progressive learning system")
     print("   • ALL 42 subliminal memory enhancement systems (COMPLETE)")
-    print("   • Systems 1-36: Core memory enhancement suite") 
+    print("   • Systems 1-36: Core memory enhancement suite")
     print("   • System 37: Chronobiological Phase Coupling")
     print("   • System 38: Mirror Neuron Activation Protocol")
     print("   • System 39: Subliminal Confidence Injection")
@@ -4863,9 +4872,9 @@ if __name__ == "__main__":
     print()
     print("⚡ Press Ctrl+C to stop the server")
     print("=" * 50)
-    
+
     try:
-        app.run(debug=False, host='127.0.0.1', port=5000)
+        app.run(debug=False, host="127.0.0.1", port=5000)
     except KeyboardInterrupt:
         print("\n\n✨ Thank you for using Scholar's SRS!")
         print("📚 Your knowledge journey continues!")
