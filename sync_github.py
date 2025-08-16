@@ -49,7 +49,11 @@ def setup_git():
     # Initialize git if not already initialized
     if not Path('.git').exists():
         subprocess.run(['git', 'init'])
-        subprocess.run(['git', 'add', '.'])
+        # Add .gitignore if it doesn't exist
+        if not Path('.gitignore').exists():
+            Path('.gitignore').touch()
+        # Force add all files including hidden ones
+        subprocess.run(['git', 'add', '-f', '.'])
         subprocess.run(['git', 'commit', '-m', 'Initial commit'])
 
 def sync_with_github(repo_url):
@@ -71,8 +75,8 @@ def sync_with_github(repo_url):
         # Add new remote
         run_git_command(['git', 'remote', 'add', 'origin', repo_url])
     
-    # Push to GitHub
-    run_git_command(['git', 'add', '.'])
+    # Force add all files including hidden ones
+    run_git_command(['git', 'add', '-f', '.'])
     run_git_command(['git', 'commit', '-m', 'Update flashcards project'])
     result = run_git_command(['git', 'push', '-u', 'origin', 'main', '--force'])
     
