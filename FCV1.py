@@ -5,28 +5,33 @@ Enhanced with 42 Subliminal Memory Systems
 Version 2.0 - COMPLETE (Systems 1-42) - FIXED
 """
 
-from threading import Timer
 import subprocess  # Add this import
 import sys
+from threading import Timer
+
 
 def install_dependencies():
     try:
-        subprocess.run(['pip', 'install', 'flask'], check=True)
+        subprocess.run(["pip", "install", "flask"], check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error installing dependencies: {e}")
         raise
 
+
 def check_port_availability():
     try:
-        subprocess.run(['netstat', '-an'], check=True)
+        subprocess.run(["netstat", "-an"], check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error checking port: {e}")
         return False
     return True
 
+
 def open_browser():
     import webbrowser
-    webbrowser.open('http://127.0.0.1:5000')
+
+    webbrowser.open("http://127.0.0.1:5000")
+
 
 # Install dependencies first
 install_dependencies()
@@ -41,7 +46,7 @@ except ImportError:
 app = Flask(__name__)
 
 # HTML template with modular, extensible architecture and 42 Memory Systems
-HTML_TEMPLATE = r'''<!DOCTYPE html>
+HTML_TEMPLATE = r"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -4808,31 +4813,33 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
         });
     </script>
 </body>
-</html>'''
+</html>"""
 
-@app.route('/')
+
+@app.route("/")
 def index():
     return render_template_string(HTML_TEMPLATE)
+
 
 if __name__ == "__main__":
     print("🎓 Scholar's Spaced Repetition System v2.0 - COMPLETE & FIXED")
     print("📚 Launching with ALL 42 Subliminal Memory Enhancement Systems")
     print()
-    
+
     if not check_port_availability():
         input("Press Enter to exit...")
         sys.exit(1)
-    
+
     # Start browser after a small delay
     Timer(1.0, open_browser).start()
-    
+
     print("🚀 Starting server...")
     print("🌐 Access your learning system at: http://127.0.0.1:5000")
     print()
     print("📖 Features:")
     print("   • Seven-phase progressive learning system")
     print("   • ALL 42 subliminal memory enhancement systems (COMPLETE)")
-    print("   • Systems 1-36: Core memory enhancement suite") 
+    print("   • Systems 1-36: Core memory enhancement suite")
     print("   • System 37: Chronobiological Phase Coupling")
     print("   • System 38: Mirror Neuron Activation Protocol")
     print("   • System 39: Subliminal Confidence Injection")
@@ -4849,9 +4856,9 @@ if __name__ == "__main__":
     print()
     print("⚡ Press Ctrl+C to stop the server")
     print("=" * 50)
-    
+
     try:
-        app.run(debug=False, host='127.0.0.1', port=5000)
+        app.run(debug=False, host="127.0.0.1", port=5000)
     except KeyboardInterrupt:
         print("\n\n✨ Thank you for using Scholar's SRS!")
         print("📚 Your knowledge journey continues!")
