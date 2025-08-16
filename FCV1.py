@@ -2,7 +2,7 @@
 """
 Scholar's Spaced Repetition System - Python Server
 Enhanced with 42 Subliminal Memory Systems
-Version 2.0 - COMPLETE (Systems 1-42)
+Version 2.0 - COMPLETE (Systems 1-42) - FIXED
 """
 
 from threading import Timer
@@ -1150,7 +1150,7 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
     <script>
         /**
          * Scholar's Spaced Repetition System - Enhanced with Memory Systems
-         * Version 2.0 - COMPLETE 42 Systems (1-42)
+         * Version 2.0 - COMPLETE 42 Systems (1-42) - FIXED
          * FINAL: Added Systems 37-42
          */
         
@@ -3064,7 +3064,7 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                 if (!flashElement) return;
                 
                 // Choose symbol and color based on response
-                const symbol = isCorrect ? '✓' : '→';
+                const symbol = isCorrect ? '✓' : '↗';
                 const color = isCorrect ? '#4caf50' : '#2196f3'; // Green for correct, blue for incorrect
                 
                 // Position in peripheral vision (edge of screen)
@@ -4004,29 +4004,6 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                         container.style.letterSpacing = '';
                         container.style.textShadow = '';
                         container.style.transform = '';
-                    State.cards.current.lastSeen = (now - State.session.preciseStartTime) / (1000 * 60);
-                    State.cards.current.totalSeen++;
-                    State.cards.current.lastResponseTime = now;
-                    State.performance.cardsSeenInSession++;
-                },
-                
-                updateUI() {
-                    const questionElement = document.getElementById('card-question');
-                    const answerElement = document.getElementById('card-answer');
-                    
-                    if (questionElement && answerElement) {
-                        questionElement.textContent = State.cards.current.question || 'Invalid question';
-                        answerElement.textContent = State.cards.current.answer || 'Invalid answer';
-                        answerElement.classList.remove('show');
-                    }
-                    
-                    // Reset any distinctive effects
-                    const container = document.querySelector('.card-container');
-                    if (container) {
-                        container.style.fontSize = '';
-                        container.style.letterSpacing = '';
-                        container.style.textShadow = '';
-                        container.style.transform = '';
                         container.classList.remove('distinctiveness-boost');
                         container.classList.remove('vestibular-shift');
                     }
@@ -4325,7 +4302,7 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                         
                     } catch (error) {
                         ScholarSRS.Error.handle('breakEnd', error);
-                        ScholarSRS.UI.switchToStudySc                        <button class="btn" id="start-button" onclick="ScholarSRS.startSession()">Commence Study Session</button>                        <button class="btn" id="start-button" onclick="ScholarSRS.startSession()">Commence Study Session</button>reen();
+                        ScholarSRS.UI.switchToStudyScreen();
                         State.timing.timerInterval = setInterval(() => ScholarSRS.Timer.update(), CONFIG.PROGRESS_UPDATE_INTERVAL);
                     }
                 },
@@ -4703,11 +4680,19 @@ What is the speed of light?::299,792,458 meters per second"></textarea>
                 
                 toggleSound() {
                     State.settings.soundEnabled = !State.settings.soundEnabled;
-                    document.getElementById('sound-icon').textContent = State.settings.soundEnabled ? '🔊' : '🔇';
-                    document.getElementById('sound-toggle').classList.toggle('muted', !State.settings.soundEnabled);
                     
-                    if (State.settings.soundEnabled && State.settings.audioContext) {
-                        State.settings.audioContext.resume();
+                    const soundIcon = document.getElementById('sound-icon');
+                    const soundToggle = document.getElementById('sound-toggle');
+                    
+                    if (soundIcon) {
+                        soundIcon.textContent = State.settings.soundEnabled ? '🔊' : '🔇';
+                    }
+                    
+                    if (soundToggle) {
+                        soundToggle.classList.toggle('muted', !State.settings.soundEnabled);
+                    }
+                    
+                    if (State.settings.soundEnabled) {
                         this.playSound(440, 0.1);
                     }
                 }
@@ -4830,7 +4815,7 @@ def index():
     return render_template_string(HTML_TEMPLATE)
 
 if __name__ == "__main__":
-    print("🎓 Scholar's Spaced Repetition System v2.0 - COMPLETE")
+    print("🎓 Scholar's Spaced Repetition System v2.0 - COMPLETE & FIXED")
     print("📚 Launching with ALL 42 Subliminal Memory Enhancement Systems")
     print()
     
